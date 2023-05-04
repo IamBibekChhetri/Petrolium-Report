@@ -33,4 +33,34 @@ router.get("/data/add", async (req, res) => {
   }
 });
 
+router.get("/get-reports", async function (req, res) {
+  const response = await Report.find();
+  // console.log(response);
+  if (response) {
+    res.json(response);
+  } else {
+    res.status(500).send("Error");
+  }
+});
+
+router.get("/total-sale-each-petroleum", function (req, res) {
+  Report.aggregate([
+    {
+      $group: {
+        _id: "$petroleum_product",
+        total: {
+          $sum: "$sale",
+        },
+      },
+    },
+  ]).then(function (err, result) {
+    if (err) {
+      res.send(err);
+    }
+    if (result) {
+      res.json(result);
+    }
+  });
+});
+
 module.exports = router;
