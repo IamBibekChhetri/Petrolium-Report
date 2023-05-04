@@ -63,4 +63,33 @@ router.get("/total-sale-each-petroleum", function (req, res) {
   });
 });
 
+router.get("/filter-top-country", async function (req, res) {
+  const top = await Report.aggregate([
+    {
+      $group: {
+        _id: "$country",
+        totalSales: { $sum: "$sale" },
+      },
+    },
+    { $sort: { totalSales: 1 } },
+    { $limit: 3 },
+  ]);
+
+  const least = await Report.aggregate([
+    {
+      $group: {
+        _id: "$country",
+        totalSales: { $sum: "$sale" },
+      },
+    },
+    { $sort: { totalSales: -1 } },
+    { $limit: 3 },
+  ]);
+
+  if (top && least) {
+    console.log("top", top);
+    console.log("least", least);
+    res.json({ top, least });
+  }
+});
 module.exports = router;
