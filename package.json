@@ -1,0 +1,30 @@
+{
+  "name": "petrolium-report",
+  "version": "1.0.0",
+  "description": "This is my internship selection project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamBibekChhetri/Petrolium-Report.git"
+  },
+  "author": "Bibek KC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IamBibekChhetri/Petrolium-Report/issues"
+  },
+  "homepage": "https://github.com/IamBibekChhetri/Petrolium-Report#readme",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
