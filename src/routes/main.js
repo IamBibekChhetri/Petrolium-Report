@@ -92,4 +92,37 @@ router.get("/filter-top-country", async function (req, res) {
     res.json({ top, least });
   }
 });
+
+router.get("/average-sale", async function (req, res) {
+  const av = await Report.aggregate([
+    {
+      $group: {
+        _id: {
+          product: "$petroleum_product",
+          year: {
+            $subtract: [
+              Date.parse("$year"),
+              { $mod: [Date.parse("$year"), 4] },
+            ],
+          },
+        },
+        totalSales: { $sum: "$sale" },
+        count: { $sum: { $cond: [{ $ne: ["$sale", 0] }, 1, 0] } },
+      },
+    },
+    { $match: { count: { $gt: 0 } } },
+    {
+      $project: {
+        _id: 0,
+        product: "$_id.product",
+        year: "$_id.year",
+        averageSale: { $divide: ["$totalSales", "$count"] },
+      },
+    },
+  ]);
+
+  if (av) {
+    res.json(av);
+  }
+});
 module.exports = router;
