@@ -17,3 +17,14 @@ Cons Of Project<br>
 <br>
 1	No normalization of data<br>
 2	No docorization environment setup for this project<br>
+<br>
+<h3> Routes </h3>
+<br>
+http://localhost:5555/get-reports
+<br>
+http://localhost:5555/total-sale-each-petroleum
+<br>
+http://localhost:5555/filter-top-country
+<br>
+http://localhost:5555/average-sale
+<br>
