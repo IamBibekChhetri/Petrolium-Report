@@ -28,3 +28,4 @@ http://localhost:5555/filter-top-country
 <br>
 http://localhost:5555/average-sale
 <br>
+http://localhost:5555/data/add
